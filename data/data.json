@@ -1,0 +1,7 @@
+{ 
+    "mac": "%MacAddress%",
+    "version": "%Version%",
+    "temperature": "%Temperature%",
+    "humidity": "%Humidity%",
+    "pressure": "%Pressure%"
+}

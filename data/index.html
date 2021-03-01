@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GYM+ Enviroment Monitor</title>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="data:,">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="sweetalert2@10"></script>
+	</head>
+	<body>
+		<h1>GYM+ Enviroment Monitor</h1>
+		<p><a href="data.json">JSON</a> <a href="data.xml">XML</a></p>
+		<p>Temperature: <strong> %Temperature% °C</strong></p>
+    	<p>Humidity: <strong> %Humidity% ％</strong></p>
+        <p>Pressure: <strong> %Pressure% hPa</strong></p>
+		<table style="text-align: left;">
+			<tr>
+				<th>
+					<h1 style="text-align: center;">
+						Network
+					</h1>
+				</th>
+				<th>
+					<h1 style="text-align: center;">
+						MQTT
+					</h1>
+				</th>
+			</tr>
+			<tr>
+				<th>
+					<p>
+						MAC: <strong> %MacAddress% </strong><br>
+						IPv4: <strong> %IPv4% </strong><br>
+						Gateway: <strong> %GATEWAY% </strong><br>
+						Subnet Mask: <strong> %SUBNETMASK% </strong><br>
+						Link Speed: <strong> %LINKSPEED% MBPS</strong>
+					</p>
+				</th>
+				<th style="padding-left: 25px">
+					<p>
+						Status: <strong> %MQTTStatus% </strong><br>
+						Topic: <strong> %MQTTTOPIC% </strong><br>
+						Server: <strong> %MQTTIP%:%MQTTPORT% </strong><br>
+						Username: <strong> %MQTTUSERNAME% </strong>
+					</p>
+				</th>
+			</tr>
+		</table>		
+		<p><a href="config.html"><button class="button" >CONFIG</button></a></p>
+	</body>
+</html>

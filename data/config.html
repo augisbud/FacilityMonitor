@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GYM+ Enviroment Monitor</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="data:,">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="sweetalert2@10"></script>
+	</head>
+	<body>
+		<h1>GYM+ Enviroment Monitor</h1>
+		<p>MAC: <strong> %MacAddress%</strong></p>
+    	<p><strong> %Version%</strong></p>
+		<p><button class="button" onclick="mqtt();">MQTT</button><button class="button" onclick="admin();">ADMIN</button></p>
+		<p><button class="button reboot" onclick="window.location.href='/config.html?reboot'">REBOOT</button></p>
+		<form id="UPDATE" method="get">
+			<input type="text" name="url" style="width: 20%%;" placeholder="https://example.com/firmware.bin" autocomple="off">
+			<button class="button update" type="submit" form="UPDATE">Update</button>
+		</form>
+		<p><strong>%UPDATE%</strong></p>
+		<p><a href="/"><button class="button" >INFORMATION</button></a></p>
+	</body>
+	<script>
+		function findParameter(parameterName) {
+			var result = null,
+				tmp = [];
+			var items = location.search.substr(1).split("&");
+			for (var index = 0; index < items.length; index++) {
+				tmp = items[index].split("=");
+				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+			}
+			return result;
+		}
+
+		if(findParameter("topic") != null && findParameter("ipAddress") != null && findParameter("port") != null && findParameter("username") != null && findParameter("password") != null)
+			window.history.replaceState(null, null, window.location.pathname);
+
+		if(findParameter("AdminUsername") != null && findParameter("AdminPassword") != null)
+			window.history.replaceState(null, null, window.location.pathname);
+
+		if(findParameter("url") != null)
+			window.history.replaceState(null, null, window.location.pathname);
+		
+		function mqtt() {
+			Swal.fire({
+				title: '<strong>MQTT Configuration</strong>',
+				icon: 'info',
+				html: '<form id="MQTT" method="get">' +
+						'<input type="text" name="topic" value="%MQTTTOPIC%" placeholder="Topic Prefix" autocomplete="one-time-code"><br>'+
+						'<input type="text" name="ipAddress" value="%MQTTIP%" placeholder="IP Address" style="width: 20%%;" autocomplete="one-time-code">'+
+						'<input type="number" name="port" value="%MQTTPORT%" placeholder="Port" min=0 max=65535 style="width: 13%%;" autocomplete="one-time-code"><br>'+
+						'<input type="text" name="username" value="%MQTTUSERNAME%" placeholder="Username" autocomplete="one-time-code"><br>'+
+						'<input type="password" name="password" value="%MQTTPASSWORD%" placeholder="Password" autocomplete="one-time-code"><br>'+
+						'<button class="button update" type="submit" form="MQTT">Update</button>' +
+					'</form>', 
+				showConfirmButton: false,
+				showCloseButton: true,
+				showCancelButton: false
+			})
+		}
+		
+		function admin() {
+			Swal.fire({
+				title: '<strong>ADMIN UI Configuration</strong>',
+				icon: 'info',
+				html: '<form id="Admin" method="get">' +
+						'<input type="text" name="AdminUsername" value="%USERNAME%" placeholder="Username" autocomplete="username"><br>'+
+						'<input type="password" name="AdminPassword" value="%PASSWORD%" placeholder="Password" autocomplete="current-password"><br>'+
+						'<button class="button update" type="submit" form="Admin">Update</button>' +
+					'</form>', 
+				showConfirmButton: false,
+				showCloseButton: true,
+				showCancelButton: false
+			})
+		}
+	</script>
+</html>

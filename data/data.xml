@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <root>
+        <device>
+            <mac>%MacAddress%</mac>
+            <version>%Version%</version>
+        </device>
+        <reading>
+            <temperature>%Temperature%</temperature>
+            <humidity>%Humidity%</humidity>
+            <pressure>%Pressure%</pressure>
+        </reading>
+    </root>
+
+
+
